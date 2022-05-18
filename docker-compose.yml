@@ -1,0 +1,56 @@
+version: '3'
+services:
+  #
+  # Railsウェブアプリ
+  #
+  rt-support:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - TIME_ZONE=${TIME_ZONE}
+        - BUNDLER_VERSION=${BUNDLER_VERSION}
+        - APP_ROOT=${APP_ROOT}
+    container_name: rt-support
+    ports:
+      - '3000:3000'
+      - "1234:1234"
+      - "26168:26168"
+    environment:
+      - DATABASE_HOSTNAME=${DATABASE_HOSTNAME}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_DB=${DATABASE_DB}
+    volumes:
+      - .:/usr/src/rt-support
+      - bundle:/usr/local/bundle
+    networks:
+      - rt-support
+    depends_on:
+      - rt-support_db
+    tty: true
+  #
+  # データベース
+  #
+  rt-support_db:
+    image: 'postgres:13.6'
+    container_name: rt-support_db
+    ports:
+      - "5432:5432"
+    environment: 
+      POSTGRES_DB: ${DATABASE_DB}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes: 
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - rt-support
+networks:
+    rt-support:
+        driver: bridge
+volumes:
+  db-data:
+    driver: local
+  bundle:
+    driver: local
