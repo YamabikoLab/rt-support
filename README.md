@@ -1,13 +1,11 @@
 # はじめに
-RailsチュートリアルをvscodeとDocker環境で学習したいなと思ったことはありませんか？
-
-この記事ではRailsチュートリアルのdokcerでの環境構築方法をご紹介します。
-
-もちろん、チュートリアル通りにcloud9を使用しても良いかと思いますが、vscodeの方が慣れている、という方に向けての記事です。
-
+Railsチュートリアルのdokcerでの環境構築方法をご紹介します。
 さらに、vscodeのRemote Container拡張機能を使用して、Railsで開発するのに必要な拡張機能がインストールされた開発環境を構築します。
-
 また、デバッグ実行可能です。
+
+# Railsチュートリアルとは？
+質が高い上にボリュームが非常に多く、チュートリアルをやり通すことで本格的なアプリ開発をするスタートラインに立つことができる素晴らしい教材です。
+Railsで開発をするのであれば絶対にやったほうがいいと思います。
 
 # 前提条件
 筆者の環境がWindos11 Proなので、その前提で解説します。
@@ -32,11 +30,10 @@ rubyのバージョンがチュートリアルとは異なります。
 データベースはpostgresを使用しています。
 
 # 環境構築
-ホスト側に下記2つのvscode拡張機能をインストールしておきます。
-
-Remote - Containersを活用すると、Remoteコンテナ側にvscode拡張機能をインストールすることが可能になります。
-
-なので、ホスト側の環境を汚さないで済む、というメリットがあります。
+ホスト側に下記2つのvscode拡張機能をインストールしておきます。  
+Remote - Containersを活用すると、Remoteコンテナ側でvscode拡張機能を使用することが可能になります。  
+そして、Remoteコンテナ側のvscode拡張機能はRemoteコンテナのリソースを使用して動作します。  
+そのため、ホスト側の環境にvscode拡張機能をインストール必要がなく、ホスト側の環境がクリーンに保たれる、というメリットがあります。  
 https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers
 
 https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl
@@ -118,10 +115,3 @@ SQLをフォーマットできます。
 ## Material Icon Theme
 https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme
 エクスプローラー内のフォルダやファイルアイコンなどが見やすくなるテーマです。
-
-# まとめ
-チュートリアル環境をダウンロードして、すぐにチュートリアルを開始できたらいいな、と思ったことから、この環境を作成しました。  
-また、普段からvscodeを使用しているので、vscode + docker環境で構築することにしました。  
-さらに、チュートリアルをやってて、コピペした後に整形できなかったりしたので、vscode拡張機能を追加して、学習しやすい環境を構築しました。  
-せっかく環境を構築したので、みなさんに活用していただければと思い、公開することにしました。  
-Rails学習の促進になれば嬉しく思います。
